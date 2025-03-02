@@ -1,0 +1,86 @@
+{% extends "login.html" %}
+{% block tytle %}Register{% endblock tytle %}
+{% block content %}
+<section class=" px-3 mt-5 mb-5">
+    <div id="main-wrapper" class="container mt-5 mb-5 pt-5 pb-5 shadow">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="h4 font-weight-bold text-theme">{% block loginpage %}Signup{% endblock loginpage %}</h3>
+                                    </div>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        {% if messages %}
+                                    
+                                        <div class="alert alert-primary" role="alert">
+     
+                                             {% for message in messages %}
+                                                 {{ message }}
+                                             {% endfor %}
+     
+                                        </div>
+     
+                                       {% endif %}
+                                        <div class="form-group d-flex">
+                                            <input type="text" class="form-control" id="exampleInputPassword1" name="first_name" placeholder="First Name" required>
+                                            <input type="text" class="form-control ml-2" id="exampleInputPassword1" name="last_name" placeholder="Last Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" id="exampleInputEmail1" name="mobile_no" placeholder="Mobile number" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email" required>
+                                        </div>
+
+                                        
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="password" required>
+                                        </div>
+                                        {% comment %} <div class="form-group">
+                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password">
+                                        </div> {% endcomment %}
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Address" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-theme mt-3">{% block button %}Signup{% endblock button %}</button>
+                                    </form>
+                                </div>
+                            </div>
+    
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-right">
+                                    <div class="overlay rounded-right"></div>
+                                    <div class="account-testimonial">
+                                        <h4 class="text-white mb-4">This  beautiful theme yours!</h4>
+                                        <p class="lead text-white">"Best investment i made for a long time. Can only recommend it for other users."</p>
+                                        <p>- Admin User</p>
+                                        <a href="{% block haveAccLink %}{% url "login" %}{% endblock haveAccLink %}"><button class="btn">{% block haveAcc %}Login {% endblock haveAcc %}</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+    
+              
+                <!-- end row -->
+    
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- Row -->
+    </div>
+</section>
+{% endblock content %}

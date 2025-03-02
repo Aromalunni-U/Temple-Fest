@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+Booking
+{% endblock  %}
+{% block content %}
+
+<div class="container mt-5 bg-light p-5">
+    <h1 class="text-center">Book Here</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if messages %}
+        <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <input type="hidden" name="service_id" value="{{ service.id }}">
+
+        <div class="mb-3 mt-3">
+            <input type="text" class="form-control" name="place" id="exampleFormControlInput1" placeholder="Place" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="date" class="form-control" name="date" required>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" name="mobile" placeholder="Mobile Number" required>
+            </div>
+        </div>
+
+        <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="requirements" placeholder="Additional requirements..."></textarea>
+
+        <p class="p-3">Note: After requesting, you need to wait for the service provider to accept the booking request.</p>
+        <button type="submit" class="btn btn-secondary">Request</button>
+    </form>
+</div>
+
+{% endblock %}

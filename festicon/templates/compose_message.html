@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container bg-light mt-3 p-5">
+<h3 >Compose Message</h3>
+{% if messages %}
+<div class="alert alert-primary text-center mt-3" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+<form method="post" action="{% url 'compose_message' %}">
+  {% csrf_token %}
+  <div>
+    <input type="text" id="id_receiver" name="receiver" class="form-control my-2" placeholder="To" required>
+  </div>
+  <div>
+    <textarea id="id_content" name="content" rows="4" cols="50" class="form-control" required placeholder="Type a message. . ."></textarea>
+  </div>
+  <button type="submit" class="btn btn-secondary mt-4">Send</button>
+</form>
+
+</div>
+{% endblock %}

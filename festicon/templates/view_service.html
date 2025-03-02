@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+service{% endblock %}
+{% block content %}
+  <section class="w3l-content-with-photo-4" id="about">
+    <div id="content-with-photo4-block" class="py-5">
+
+
+
+      {% if messages %}
+      <div class="alert alert-success text-center" role="alert">
+          {% for message in messages %}
+          {{ message }}
+          {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="container py-md-3">
+        <div class="cwp4-two row">
+          <div class="cwp4-image col-lg-6 pl-lg-5 mt-lg-0 mt-5">
+            <img src="{{ service.image.url }}" class="img-fluid" alt="" />
+          </div>
+          <div class="cwp4-text col-lg-6">
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.description }}</p>
+            <ul class="cont-4">
+              <li><span class="mr-3 fa fa-long-arrow-right"></span>Price: {{ service.price_per_hour|floatformat:"0" }}</li>
+              <li><span class="mr-3 fa fa-long-arrow-right"></span>Owner: {{service.user}}</li>
+              <li><span class="mr-3 fa fa-long-arrow-right"></span>Place: {{ service.address }}</li>
+            </ul>
+            <div class="dflex">
+              {% if not user.services.exists  %}
+
+              <a class="btn btn-secondary btn-theme3 mt-3 border-0" href="{% url 'booking-form' %}?service_id={{ service.id }}"><i class="bi bi-pencil-square"></i>Book</a>
+           {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section style="background-color: #eee;">
+    <div class="row d-flex justify-content-center pt-5 pb-5">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Comments</h5>
+
+            {% if user.is_authenticated %}
+              {% if is_service_provider %}
+                <p class="mt-4">Service providers cannot post comments.</p>
+              {% else %}
+                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                  <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex flex-start w-100">
+                      <textarea class="form-control" id="content" name="content" rows="4" style="background: #fff;" placeholder="Write a comment..."></textarea>
+                    </div>
+                    <div class="float-end mt-2 pt-1">
+                      <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+                      <button type="reset" class="btn btn-outline-primary btn-sm">Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              {% endif %}
+            {% else %}
+              <p>You must be <a href="{% url 'login' %}">logged in</a> to post a comment.</p>
+            {% endif %}
+
+            {% for comment in comments %}
+              <div class="d-flex flex-start align-items-center mb-3 mt-3">
+                <div>
+                  <h6 class="fw-bold text-primary mb-1">
+                    {% if comment.user.is_staff %}
+                      <span>Admin</span>
+                    {% else %}
+                      {% if comment.user.first_name or comment.user.last_name %}
+                        {{ comment.user.first_name }} {{ comment.user.last_name }}
+                      {% else %}
+                        {{ comment.user.username }}
+                      {% endif %}
+                    {% endif %}
+                  </h6>
+                  <p class="text-muted small mb-0">{{ comment.created_at|date:"F d, Y" }}</p>
+                </div>
+              </div>
+              <p class="mt-3 mb-4 pb-2">{{ comment.content }}</p>
+              <hr>
+            {% empty %}
+              <p class="mt-4">No comments yet.</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

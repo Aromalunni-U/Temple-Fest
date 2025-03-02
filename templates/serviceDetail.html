@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tytle %}
+  Service Detail
+{% endblock %}
+{% block content %}
+  <section class="w3l-content-with-photo-4" id="about">
+    <div id="content-with-photo4-block" class="py-5">
+      <div class="container py-md-3">
+        <div class="cwp4-two row">
+          <div class="cwp4-image col-lg-6 pl-lg-5 mt-lg-0 mt-5">
+            <img src="{% static '/images/Theyyam.jpg' %}" class="img-fluid" alt="" />
+          </div>
+          <div class="cwp4-text col-lg-6">
+            <h3>Company Overview</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+            <ul class="cont-4">
+              <li>
+                <span class="mr-3 fa fa-long-arrow-right"></span>Place
+              </li>
+              <li>
+                <span class="mr-3 fa fa-long-arrow-right"></span>Rate
+              </li>
+              <li>
+                <span class="mr-3 fa fa-long-arrow-right"></span>Rating
+              </li>
+            </ul>
+            <div class="dflex">
+              <a class="btn btn-secondary btn-theme3 mt-3 border-0" href="#team">Book</a>
+              <a class="btn btn-secondary btn-theme3 mt-3 border-0" style="background-color: #ff7019; " href="#team">contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w3l-content-with-photo-4" id="about">
+    <div id="content-with-photo4-block" class="py-5">
+      <div class="container py-md-3">
+
+                <!-- Gallery -->
+                <div class="row mt-5">
+                  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                    <img src="{% static '/images/elephant1.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="Waves at Sea" />
+                    <img src="{% static '/images/elephant5.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+                    
+                    </div>
+                    
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                      
+                      <img src="{% static '/images/elephant1.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+                      <img src="{% static '/images/elephant2.jpeg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
+                      </div>
+                      
+                      <div class="col-lg-4 mb-4 mb-lg-0">
+                        
+                        <img src="{% static '/images/elephant3.jpeg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="Mountains in the Clouds" />
+                    <img src="{% static '/images/elephant2.jpeg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="Yosemite National Park" />
+                  </div>
+                </div>
+                <!-- Gallery -->
+        
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}

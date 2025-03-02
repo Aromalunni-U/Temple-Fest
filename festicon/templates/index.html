@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}
+  Home
+{% endblock %}
+{% block content %}
+  {% include 'slide.html' %}
+  <section class="grids-4" id="properties">
+    <div id="grids4-block" class="py-5">
+      <div class="container py-md-3">
+        <div class="heading text-center mx-auto mb-5">
+          <h3 class="head">Service Available</h3>
+        </div>
+        <!--search-->
+        <section class="p-3" style="width: 100%;">
+
+          <div class="form-outline d-flex" data-mdb-input-init>
+
+            <form method="post" class="form-outline d-flex">
+              {% csrf_token %}
+         
+               <input type="search" id="form1" name="searchquery"   class="form-control" placeholder="Search" />
+               <button  class="btn ml-2"  name="search">search</button>
+
+           </form>
+        </div>
+          
+        </section>
+       
+        <!--end search-->
+        {% load static %}
+
+        <div class="container text-center mt-3  p-5">
+
+
+          {% for d in service %}
+
+          <div class="card  m-2 shadow" style="width: 18rem;  display:inline-block;">
+
+            <a href="{% url "view_service" d.id %}">
+
+                  <div style='max-height: 300px ; overflow: hidden; min-height: 300px;'>
+                    <img class="card-img-top"  src="{{d.image.url}}"  width="500" height="250">
+                  </div>
+                  
+                  <ul class="location-top">
+                    <li class="rent">status</li>
+                  </ul>
+                  
+                  <div class="pb-5">
+                    <h5><a href="#">{{d.name}}</a></h5>
+                    <p>Provider: <b>{{d.provider}}</b></p>
+                    
+                  </div>
+                </a>
+          </div>
+
+          {% endfor %}
+
+        </div>
+        
+
+      </div>
+    </div>
+  </section>
+{% endblock %}

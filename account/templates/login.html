@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block tytle %}Login{% endblock tytle %}
+{% block content %}
+<!-- Pills navs -->
+<section class=" px-3 mt-5 mb-5">
+    <div id="main-wrapper" class="container mt-5 mb-5 pt-5 pb-5 shadow">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="h4 font-weight-bold text-theme">{% block loginpage %}Login{% endblock loginpage %}</h3>
+                                    </div>
+                                    <form method="post">
+                                        {% csrf_token %}
+
+                                   {% if messages %}
+                                    
+                                   <div class="alert alert-primary" role="alert">
+
+                                        {% for message in messages %}
+                                            {{ message }}
+                                        {% endfor %}
+
+                                   </div>
+
+                                  {% endif %}
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Username</label>
+                                            <input type="text" class="form-control" name="username" id="exampleInputEmail1" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Password</label>
+                                            <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
+                                        </div>
+                                        {% block register %}{% endblock register %}
+                                        <button type="submit" class="btn btn-theme mt-3">{% block button %}login{% endblock button %}</button>
+                                        {% block forgot %}<a href="{% url "reset_password" %}" class="forgot-link float-right text-primary mt-3">Forgot password?</a>{% endblock forgot %}
+                                    </form>
+                                </div>
+                            </div>
+    
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-right">
+                                    <div class="overlay rounded-right"></div>
+                                    <div class="account-testimonial">
+                                        <h4 class="text-white mb-4">This  beautiful theme yours!</h4>
+                                        <p class="lead text-white">"Best investment i made for a long time. Can only recommend it for other users."</p>
+                                        <p>- Admin User</p>
+                                        <a href="{% block haveAccLink %}{% url "registeruser" %}{% endblock haveAccLink %}"><button class="btn">{% block haveAcc %}register {% endblock haveAcc %}</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+    
+              
+                <!-- end row -->
+    
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- Row -->
+    </div>
+</section>
+  <!-- Pills content -->
+{% endblock content %}

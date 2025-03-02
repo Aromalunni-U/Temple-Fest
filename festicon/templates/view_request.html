@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+Request
+{% endblock  %}
+{% block content %}
+
+<div class="container mt-5 bg-light p-5 text-wrap">
+
+    <h4 class="mb-3">Name: <span class="text-success">{{bookings.user_profile.first_name}} {{bookings.user_profile.last_name}} </span></h4>
+    <h4 class="mb-3">Place: {{bookings.place}}</h4>
+    <h4 class="mb-3">Date: {{bookings.date}}</h4>
+    <h4 class="mb-3">Mobile Number: {{bookings.mobile_number}}</h4>
+    <h4 class="mb-3">Email: {{bookings.email}}</h4>
+    <h4 class="mb-3 text-wrap ">Requirements: {{bookings.requirements}}</h4>
+
+    <div class="d-flex flex-row mb-3">
+
+        <div class="p-2">
+
+    <form method="post" action="{% url 'accept_booking' bookings.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary">Accept</button>
+    </form>
+    </div>
+    <div class="p-2">
+
+    <form method="post" action="{% url 'reject_booking' bookings.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Reject</button>
+    </form>
+   </div>
+        
+      </div>
+
+
+</div>
+
+
+<style>
+    .text-wrap {
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+    }
+</style>
+{% endblock  %}
